@@ -35,6 +35,7 @@
     <name>ParticleAPI</name>
 
     <build>
+        <defaultGoal>clean install</defaultGoal>
         <finalName>ParticleAPI_v${project.version}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
@@ -56,10 +57,10 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.8.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -107,7 +108,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.11-R0.1-SNAPSHOT</version>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -118,6 +119,11 @@
     </dependencies>
 
     <repositories>
+        <!-- CodeMC's Public NMS Repository -->
+        <repository>
+            <id>codemc-nms-repository</id>
+            <url>https://repo.codemc.io/repository/nms/</url>
+        </repository>
         <repository>
             <id>inventive-repo</id>
             <url>https://repo.inventivetalent.org/content/groups/public/</url>
