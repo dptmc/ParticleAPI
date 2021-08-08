@@ -550,7 +550,7 @@ public enum ParticleEffect {
 				channel = nmsFieldNetworkManagerI.get(network);
 			}
 			final Object version = ReflectionUtilities.getVersion().contains("1_7") ? nmsNetworkGetVersion.invoke(network, channel) : 47;
-			return (int) version;
+			return (Integer) version;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

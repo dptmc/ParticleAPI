@@ -1,0 +1,5 @@
+name: ParticleLIB
+main: org.inventivetalent.particle.ParticlePlugin
+version: 2.1.3
+author: inventivetalent
+api-version: 1.13

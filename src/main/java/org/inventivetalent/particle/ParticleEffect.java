@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import static org.bukkit.Bukkit.getPlayer;
 import static org.inventivetalent.reflection.minecraft.Minecraft.Version.*;
 
 public enum ParticleEffect {
@@ -249,7 +250,7 @@ public enum ParticleEffect {
 	 */
 	public void send(Collection<? extends Player> receivers, double x, double y, double z, double offsetX, double offsetY, double offsetZ, double speed, int count, double range) {
 		double squareRange = range * range;
-		Collection<Player> inRange = new ArrayList<>();
+		Collection<Player> inRange = new ArrayList<Player>();
 		for (Player receiver : receivers) {
 			if (receiver.getLocation().distanceSquared(new Location(receiver.getWorld(), x, y, z)) <= squareRange) { inRange.add(receiver); }
 		}
@@ -269,7 +270,7 @@ public enum ParticleEffect {
 	 * @param range     Maximum visibility range
 	 */
 	public void send(Collection<? extends Player> receivers, Location location, double offsetX, double offsetY, double offsetZ, double speed, int count, double range) {
-		receivers = new ArrayList<>(receivers);
+		receivers = new ArrayList<Player>(receivers);
 		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
 			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
 		}
@@ -305,7 +306,7 @@ public enum ParticleEffect {
 	 * @param count     Particle count
 	 */
 	public void send(Collection<? extends Player> receivers, Location location, double offsetX, double offsetY, double offsetZ, double speed, int count) {
-		receivers = new ArrayList<>(receivers);
+		receivers = new ArrayList<Player>(receivers);
 		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
 			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
 		}
@@ -345,7 +346,7 @@ public enum ParticleEffect {
 	}
 
 	public void sendColor(Collection<? extends Player> receivers, Location location, Color color) {
-		receivers = new ArrayList<>(receivers);
+		receivers = new ArrayList<Player>(receivers);
 		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
 			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
 		}
@@ -353,7 +354,7 @@ public enum ParticleEffect {
 	}
 
 	public void sendColor(Collection<? extends Player> receivers, Location location, java.awt.Color color) {
-		receivers = new ArrayList<>(receivers);
+		receivers = new ArrayList<Player>(receivers);
 		for (Iterator<? extends Player> iterator = receivers.iterator(); iterator.hasNext(); ) {
 			if (!iterator.next().getWorld().getName().equals(location.getWorld().getName())) { iterator.remove(); }
 		}
@@ -381,25 +382,6 @@ public enum ParticleEffect {
 	public void sendData(Collection<? extends Player> receivers, double x, double y, double z, double offsetX, double offsetY, double offsetZ, double speed, int count, int itemId, byte data) {
 		if (!hasFeature(Feature.DATA)) { throw new ParticleException("This particle cannot have block/item data"); }
 		((DataParticle) this.particle).send(receivers, x, y, z, offsetX, offsetY, offsetZ, speed, count, itemId, data);
-	}
-
-	/**
-	 * Send this particle with block or item data
-	 *
-	 * @param receivers Collection of receivers
-	 * @param x         X-Location
-	 * @param y         Y-Location
-	 * @param z         Z-Location
-	 * @param offsetX   X-Offset
-	 * @param offsetY   Y-Offset
-	 * @param offsetZ   Z-Offset
-	 * @param speed     Particle speed
-	 * @param count     Particle count
-	 * @param itemStack {@link ItemStack} containing the ID&amp;data of the item/block
-	 * @throws ParticleException if this particle cannot have block or item data
-	 */
-	public void sendData(Collection<? extends Player> receivers, double x, double y, double z, double offsetX, double offsetY, double offsetZ, double speed, int count, ItemStack itemStack) {
-		sendData(receivers, x, y, z, offsetX, offsetY, offsetZ, speed, count, itemStack.getTypeId(), itemStack.getData().getData());
 	}
 
 	public enum Feature {
