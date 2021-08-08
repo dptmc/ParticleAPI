@@ -58,10 +58,10 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
-				<properties>
-					<maven.compiler.source>16</maven.compiler.source>
-					<maven.compiler.target>16</maven.compiler.target>
-				</properties>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
